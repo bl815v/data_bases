@@ -44,7 +44,16 @@ CREATE TABLE Sillas (
 	tipo_silla varchar(20) NOT NULL,
 	letra_fila varchar(1) NOT NULL,
 	numero_silla INT NOT NULL,
-	disponible BOOLEAN NOT NULL,
 	FOREIGN KEY (id_sala) REFERENCES Salas(id_sala),
 	UNIQUE (id_silla, letra_fila, numero_silla)
+);
+
+CREATE TABLE Sillas_Funciones (
+  id_silla_funcion SERIAL PRIMARY KEY,
+  id_funcion INT NOT NULL,
+  id_silla INT NOT NULL,
+  disponible BOOLEAN DEFAULT TRUE,
+  FOREIGN KEY (id_funcion) REFERENCES Funciones(id_funcion),
+  FOREIGN KEY (id_silla) REFERENCES Sillas(id_silla),
+  UNIQUE (id_funcion, id_silla)
 );
